@@ -2,8 +2,8 @@
 #include "main.h"
 
 /**
- *function _puts_recursion: To print String
- *Return: null
+ *_puts_recursion: To print String
+ *@s: string to print
  *
  **/
 
