@@ -11,6 +11,10 @@
 
 int main(int argc, char *argv[])
 {
+	/* Remove unused argument*/
+
+	argv = argv;
+
 	if (argc > 1 && argc < 4)
 	{
 		printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
