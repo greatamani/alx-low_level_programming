@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "main.h"
 
+int _strlen(char *str);
+char *_strappend(char *newstr, char *str, unsigned int append_index);
 
 /**
  * str_concat - concatenate two strings s1 and s2
