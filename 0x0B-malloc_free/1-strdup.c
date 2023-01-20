@@ -13,6 +13,9 @@
 char *_strdup(char *str)
 {
 	char *n_str;
+	int i;
+
+	i = 0;
 
 	str = malloc(4 * sizeof(char));
 
@@ -23,10 +26,6 @@ char *_strdup(char *str)
 	}
 
 	n_str = malloc(4 * sizeof(char));
-
-	int i;
-
-	i = 0;
 
 	while (str[i] != '\0')
 	{	n_str = str++;
