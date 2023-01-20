@@ -22,15 +22,15 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
-	n_str = malloc(4 * sizeof(char);
+	*n_str = malloc(4 * sizeof(char));
 
 	int i;
 
 	i = 0;
 
 	while (str[i] != '\0')
-		n_str = str++;
+		*n_str = str++;
 		i++;
 
-	return (n_str);
+	return (*n_str);
 }
