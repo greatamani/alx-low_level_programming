@@ -1,36 +1,71 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
 
-/**
- * _strdup - an array of chars, and initializes it with a specific char
- * @str: String passed to a function
- *
- * Return: pointer to an array memory
- *
- **/
+char *_strcopy(char *newstr, char *str);
+int _strlen(char *str);
 
+
+/**
+ * _strdup - return new pointer to duplicate of  string
+ * @str: - pointer to exisiting string
+ *
+ * Return: Pointer || NULL
+ */
 char *_strdup(char *str)
 {
-	char *n_str;
-	int i;
+	unsigned int len;
+	char *allocated_ptr, *newerstr;
 
-	i = 0;
+	if (!str)
+		return (NULL);
 
-	str = malloc(4 * sizeof(char));
+	len = _strlen(str);
 
-	if (str == NULL)
+	allocated_ptr = malloc((len + 1) * sizeof(*str));
+
+	if (!allocated_ptr)
 	{
-		free(str);
+		free(allocated_ptr);
 		return (NULL);
 	}
 
-	n_str = malloc(4 * sizeof(char));
+	newerstr = _strcopy(allocated_ptr, str);
+	return (newerstr);
+}
 
-	while (str[i] != '\0')
-	{	n_str = str++;
-		i++;
-	}
 
-	return (n_str);
+/**
+ * _strcopy - Copy string1 into string2
+ * @newstr: string2, the new string
+ * @str: string1, the older string
+ *
+ * Return: pointer to new string
+ */
+char *_strcopy(char *newstr, char *str)
+{
+	unsigned int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+		newstr[i] = str[i];
+
+	newstr[i] = '\0';
+
+	return (newstr);
+}
+
+
+/**
+ * _strlen - calculate the length of a string
+ * @str: pointer to string
+ *
+ * Return: length of string
+ */
+int _strlen(char *str)
+{
+	int len = 0;
+
+	while (str[len] != '\0')
+		len++;
+
+	return (len);
 }
