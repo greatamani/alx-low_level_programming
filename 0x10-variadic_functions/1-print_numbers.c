@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "variadic_functions.h"
 
 /**
@@ -12,11 +11,6 @@
  * Return: Void
  *
  **/
-
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
 
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
@@ -36,10 +30,4 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	}
 
 	printf("\n");
-}
-
-int main(void)
-{
-	print_numbers(", ", 4, 0, 98, -1024, 402);
-	return (0);
 }
