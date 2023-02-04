@@ -10,11 +10,11 @@
  * Return: The number of elements in given list h
  **/
 
-list_t *add_node_end(list_t **head, const char *str);
+list_t *add_node_end(list_t **head, const char *str)
 {
 	char *dup;
 	int len;
-	list_t *new;
+	list_t *new, *last;
 
 	new  = malloc(sizeof(list_t));
 
