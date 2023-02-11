@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * add_nodeint - Function to add node at the begining
+ * add_nodeint_end - Function to add node at the begining
  * @head: existing list passed on
  * @n: List integer elements
  *
