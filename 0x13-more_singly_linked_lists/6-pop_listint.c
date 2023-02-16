@@ -21,13 +21,10 @@ int pop_listint(listint_t **head)
 	if (head == NULL) /* account for no linked list */
 		return (0);
 
-	if (*head != NULL)
-	{
-		ptr = *head;
-		data = ptr->n;
-		*head = ptr->next;
-		free(ptr);
-	}
+	ptr = *head;
+	data = ptr->n;
+	*head = ptr->next;
+	free(ptr);
 
 	return (data);
 }
