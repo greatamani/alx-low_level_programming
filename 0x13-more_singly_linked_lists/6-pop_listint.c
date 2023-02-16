@@ -13,18 +13,18 @@
 
 int pop_listint(listint_t **head)
 {
-	listint_t *ptr;
-	int data = 0;
+	int data;
+	listint_t *tmp;
 
-	ptr = malloc(sizeof(listint_t));
-
-	if (head == NULL) /* account for no linked list */
+	if (*head == NULL) /* account for no linked list */
 		return (0);
 
-	ptr = *head;
-	data = ptr->n;
-	*head = ptr->next;
-	free(ptr);
+	tmp = *head;
+
+	data = tmp->n; /* save data to return later */
+
+	*head = tmp->next; /* link head to next node */
+	free(tmp);
 
 	return (data);
 }
