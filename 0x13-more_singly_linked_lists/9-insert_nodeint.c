@@ -23,8 +23,8 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	newNode->n = n;
 
 	if (*head == NULL) /* account for no linked list */
-                  return (NULL);
-	
+		return (NULL);
+
 	temp = *head;
 
 	for (nodex = 1; nodex < idx; nodex++)
@@ -37,6 +37,9 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 
 	newNode->next = temp->next;
 	temp->next = newNode;
+
+	if (!temp)
+		return (NULL);
 
 	return (temp);
 }
