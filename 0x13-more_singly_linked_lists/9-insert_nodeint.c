@@ -13,46 +13,46 @@
  *
  **/
 
-
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *temp, *newNode;
-	unsigned int nodex = 0;
 
-	if (*head == NULL) /* account for no linked list */
+	unsigned int i = 0;
+	listint_t *new_node, *tmp;
+
+	/* account for empty pointer */
+	if (head == NULL)
 		return (NULL);
 
-	newNode = malloc(sizeof(listint_t));
-
-	if (newNode == NULL)
+	/* malloc and set values for new node */
+	new_node = malloc(sizeof(listint_t));
+	if (new_node == NULL)
 		return (NULL);
+	new_node->n = n;
 
-	newNode->n = n;
-
+	/* account for idx 0 */
 	if (idx == 0)
 	{
-		newNode->next = *head;
-		*head = newNode;
-		return (newNode);
+		new_node->next = *head;
+		*head = new_node;
+		return (new_node);
 	}
 
-	temp = *head;
-
-	while (nodex < (idx - 1))
+	/* iterate to 1 before nth index to insert */
+	tmp = *head;
+	while (i < (idx - 1))
 	{
-		temp = temp->next;
+		tmp = tmp->next;
+		i++;
 
-		nodex++;
-
-		if (temp == NULL)
+		if (tmp == NULL) /* account for idx out of range */
 		{
-			free(newNode);
+			free(new_node);
 			return (NULL);
 		}
 	}
 
-	newNode->next = temp->next;
-	temp->next = newNode;
-
-	return (newNode);
+	/* link into list */
+	new_node->next = tmp->next;
+	tmp->next = new_node;
+	return (new_node);
 }
