@@ -11,7 +11,7 @@
  * Return: 1 if it succeeded, -1 if it failed
  **/
 
-int delete_nodeint_at_index(listint_t **head, unsigned int index);
+int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
 
 	unsigned int i = 0;
@@ -43,7 +43,6 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index);
 	}
 
 	/* link into list */
-	new_node->next = tmp->next;
 	tmp->next = tmp->next->next;
 	return (1);
 }
