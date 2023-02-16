@@ -18,7 +18,7 @@ void free_listint2(listint_t **head)
 	if (head == NULL) /* account for no linked list */
 		return;
 
-	while (head != NULL) /* have ptr keep track of head node and free */
+	while (*head != NULL) /* have ptr keep track of head node and free */
 	{
 		ptr = *head;
 		*head = ptr->next; /* move to next node while ptr frees prior */
