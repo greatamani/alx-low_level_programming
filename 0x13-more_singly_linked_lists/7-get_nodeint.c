@@ -6,7 +6,7 @@
  * get_nodeint_at_index - Function togett nth node in list
  * @head: existing list passed on
  * @index: nth node in the list
- *  
+ *
  * Return: node
  *
  **/
