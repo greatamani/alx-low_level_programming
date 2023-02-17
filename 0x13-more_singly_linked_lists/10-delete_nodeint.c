@@ -4,21 +4,18 @@
 #include "lists.h"
 
 /**
- * delete_nodeint_at_index - Function to sum list members
+ * delete_nodeint_at_index - Function to delete list members
  * @head: existing list passed on
  * @index: Node index
- *
  * Return: 1 if it succeeded, -1 if it failed
  **/
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-
 	unsigned int i = 0;
 	listint_t *tmp;
 
-	/* account for empty pointer */
-	if (*head == NULL)
+	if (*head == NULL) /* account for empty pointer */
 	{
 		free(*head);
 		return (-1);
@@ -39,7 +36,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	}
 
 	/* iterate to 1 before nth index to insert */
-	while (i < (index - 1))
+	while (i < (index - 1) || index == 1)
 	{
 		tmp = tmp->next;
 		i++;
