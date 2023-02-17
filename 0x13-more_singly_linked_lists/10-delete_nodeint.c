@@ -12,7 +12,7 @@
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
 	unsigned int i = 0;
-	listint_t *tmp;
+	listint_t *tmp, *tmp1;
 
 	if (*head == NULL) /* account for empty pointer */
 	{
@@ -30,7 +30,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	}
 
 	/* iterate to 1 before nth index to insert */
-	while (i < (index - 1) || index == 1)
+	while (i < (index - 1) && tmp->next != NULL)
 	{
 		tmp = tmp->next;
 		i++;
@@ -40,6 +40,9 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		return (-1);
 
 	/* link into list */
-	tmp->next = tmp->next->next;
+	tmp1 = tmp->next;
+	tmp->next = (tmp->next)->next;
+	free(tmp1);
+
 	return (1);
 }
