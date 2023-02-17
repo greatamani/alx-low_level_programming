@@ -39,8 +39,6 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	}
 
 	/* iterate to 1 before nth index to insert */
-	tmp = *head;
-
 	while (i < (index - 1))
 	{
 		tmp = tmp->next;
