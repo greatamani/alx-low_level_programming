@@ -21,10 +21,18 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	if (head == NULL)
 		return (-1);
 
-	/* account for idx 0 */
+	/* account for index 0 */
+	tmp = *head;
+
 	if (index == 0)
 	{
-		return (-1);
+		if (tmp == NULL) /* account for idx out of range */
+		{
+			free(tmp);
+			return (-1);
+		}
+		*head = (*head)->next;
+		return (1);
 	}
 
 	/* iterate to 1 before nth index to insert */
