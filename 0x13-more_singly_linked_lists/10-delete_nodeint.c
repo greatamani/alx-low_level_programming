@@ -19,7 +19,10 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 
 	/* account for empty pointer */
 	if (*head == NULL)
+	{
+		free(*head);
 		return (-1);
+	}
 
 	/* account for index 0 */
 	tmp = *head;
