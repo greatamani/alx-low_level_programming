@@ -83,30 +83,35 @@ int countNodesinLoop(const listint_t *head)
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t node = 0;
-
-	size_t count = 0;
+	int count = 0;
+	size_t num_nodes = 0;
+	int i;
+	const listint_t *tmp;
 
 	if (head == NULL)
 		exit(98);
 
 	count = (size_t)countNodesinLoop(head);
 
-	while (head)
+	if (count > 0) /* print upto last node before loop if loop */
 	{
-		printf("[%p] %d\n", (void *)&(head->n), head->n);
-
-		head = head->next;
-
-		node++;
-
-		/*
-		 * if there is no loop,count = 0 print
-		 * to last member
-		 **/
-		if (node == count)
-			break;
+		for (i = 0; i < count; i++)
+		{
+			printf("[%p] %d\n", (void *)tmp, tmp->n);
+			num_nodes += 1;
+			tmp = tmp->next;
+		}
+	}
+	else if (count == 0) /* print regularly upto NULL if no loop */
+	{
+		tmp = head;
+		while (tmp != NULL)
+		{
+			printf("[%p] %d\n", (void *)tmp, tmp->n);
+			num_nodes += 1;
+			tmp = tmp->next;
+		}
 	}
 
-	return (node);
+	return (num_nodes);
 }
