@@ -3,106 +3,88 @@
 #include "lists.h"
 
 /**
- * countNodes - Counts the number of nodes available in loop
- * @head: constant list passed in
- *
- * Return: count of nodes present in loop
- *
- **/
-
-int countNodes(const listint_t *head)
+ * count_nodes_till_loop - count nodes to know now many unique nodes to print
+ * @head: pointer to head pointer of linked list
+ * Return: number of unique nodes in list before a loop
+ */
+int count_nodes_till_loop(const listint_t *head)
 {
-	int res = 1;
-	const listint_t *temp = head;
-
-	while (temp->next != head)
-	{
-		res++;
-		temp = temp->next;
-	}
-
-	return (res);
-}
-
-/**
- * countNodesinLoop - detects and counts
- * loop nodes in the list
- * @head: constant list passed in
- *
- * Return: count of nodes present in loop, otherwise return 0
- *
- **/
-
-int countNodesinLoop(const listint_t *head)
-{
-	const listint_t *slow_p = head, *fast_p = head;
 	int count = 0;
+	const listint_t *turtle, *hare;
 
-	while (slow_p && fast_p && fast_p->next)
+	turtle = hare = head;
+
+	while (turtle != NULL && hare != NULL)
 	{
-		slow_p = slow_p->next;
-		fast_p  = fast_p->next->next;
+		turtle = turtle->next;
+		hare = hare->next->next;
+		count++;
 
-		/*
-		 * If slow_p and fast_p meet
-		 * at some point then there
-		 * is a loop
-		 **/
-
-		if (slow_p == fast_p)
+		if (turtle == hare)
 		{
-			count = countNodes(slow_p);
-
-			slow_p = head;
-			while (slow_p != fast_p)
+			turtle = head;
+			while (turtle != hare)
 			{
-				slow_p = slow_p->next;
-				fast_p = fast_p->next;
+				turtle = turtle->next;
+				hare = hare->next;
 				count++;
 			}
-
 			return (count);
 		}
 	}
-
-	/*
-	 * Return 0 to indicate that there
-	 * is no loop
-	 **/
-
 	return (0);
 }
 
 /**
- * print_listint_safe - Prints safely List elements
- * @head: constant list passed in
- *
- * Return: the number of nodes in the list
- *
- **/
+ * loop - find if there's a loop in linked list
+ * @head: pointer to head pointer of linked list
+ * Return: 0 if no loop, 1 if loop
+ */
+int loop(const listint_t *head)
+{
+	const listint_t *turtle, *hare;
 
+	turtle = hare = head;
+
+	while (turtle != NULL && hare != NULL)
+	{
+		turtle = turtle->next;
+		hare = hare->next->next;
+
+		if (turtle == hare)
+			return (1);
+	}
+	return (0);
+}
+
+/**
+ * print_listint_safe - prints list with addresses
+ * @head: pointer to head pointer of linked list
+ * Return: number of nodes in list, exit(98) if failed
+ */
 size_t print_listint_safe(const listint_t *head)
 {
 	int count = 0;
+	int loop_found;
 	size_t num_nodes = 0;
-	int i;
 	const listint_t *tmp;
 
 	if (head == NULL)
 		exit(98);
 
-	count = (size_t)countNodesinLoop(head);
+	loop_found = loop(head);
 
-	if (count > 0) /* print upto last node before loop if loop */
+	if (loop_found == 1) /* print upto last node before loop if loop */
 	{
-		for (i = 0; i < count; i++)
+		count = count_nodes_till_loop(head);
+		for (loop_found = 0; loop_found < count; loop_found++)
 		{
 			printf("[%p] %d\n", (void *)tmp, tmp->n);
 			num_nodes += 1;
 			tmp = tmp->next;
 		}
 	}
-	else if (count == 0) /* print regularly upto NULL if no loop */
+	else if (loop_found == 0) /* print regularly upto NULL if no loop */
 	{
 		tmp = head;
 		while (tmp != NULL)
