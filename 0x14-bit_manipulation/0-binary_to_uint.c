@@ -18,19 +18,19 @@ unsigned int binary_to_uint(const char *b)
 	if (b == NULL)
 		return (error);
 
-	while (b[len] != '\0') // find string length
+	while (b[len] != '\0') /* find string length*/
 		len++;
 	len -= 1;
 
-	while (len >= 0) // iterate from back of string
+	while (len >= 0) /* iterate from back of string*/
 	{
 		if ((b[len] != '0') && (b[len] != '1'))
 			return (error);
 
-		if (b[len] == '1') // add appropriate power of 2 if '1'
+		if (b[len] == '1') /* add appropriate power of 2 if '1'*/
 			sum += pow;
 
-		pow *= 2; // update power of 2
+		pow *= 2; /* update power of 2*/
 		len--;
 	}
 
